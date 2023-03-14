@@ -26,28 +26,42 @@ console.log(items)
 let activeStatus = 0;
 items[activeStatus].classList.add("active");
 
-//bottone down
+//richiamo i due bottoni
 const downBtn = document.querySelector(".down");
+const upBtn = document.querySelector(".up");
+
+
+//bottone down
 downBtn.addEventListener("click", function(){
-    //si blocca all'ultima immagine
-    if (activeStatus < imgArray.length - 1) {
-    // rimuovo active - aumento active - do active al successivo
-    items[activeStatus].classList.remove('active');
-    activeStatus++;
-    items[activeStatus].classList.add('active');
-    //nascondo il bottone
-    if (activeStatus === imgArray.length - 1) {
-        downBtn.classList.add("hidden");
-    }
+
+    upBtn.classList.remove("hidden")
+        //si blocca all'ultima immagine
+        if (activeStatus < imgArray.length - 1) {
+        // rimuovo active - aumento active - do active al successivo
+        items[activeStatus].classList.remove('active');
+        activeStatus++;
+        items[activeStatus].classList.add('active');
+        //nascondo il bottone
+
+        if (activeStatus === imgArray.length - 1) {
+            downBtn.classList.add("hidden");
+        }
 }
 }) 
 
 //bottone up
-const upBtn = document.querySelector(".up");
+
+upBtn.classList.add("hidden")
+
 upBtn.addEventListener("click", function(){
-    if (activeStatus < imgArray.length - 1){
+
+    downBtn.classList.remove("hidden")
+    
     items[activeStatus].classList.remove('active');
     activeStatus--;
     items[activeStatus].classList.add('active');
+    
+    if (activeStatus === 0) {
+        upBtn.classList.add("hidden")
     }
 })
